@@ -1,1 +1,1 @@
-web: gunicorn app:app
+web: gunicorn mail_mama_server:app
