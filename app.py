@@ -50,6 +50,9 @@ api.add_resource(user.Protected, '/protected')
 #                  '/agent/<agent_id>/routemap')
 
 # endregion
+@app.route("/")
+def hello():
+    return "<h1 style='color:blue'>Hello There!</h1>"
 
 # Name is only set to main when file is explicitly run (not on imports):
 if __name__ == '__main__':
