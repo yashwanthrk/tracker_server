@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # Filename: build.sh
 
 . .env

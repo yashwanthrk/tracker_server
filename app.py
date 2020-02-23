@@ -3,7 +3,7 @@ from flask_restful import Api
 from flask_cors import CORS
 from environs import Env
 
-from src.controllers import user
+#from src.controllers import user
 
 env = Env()
 env.read_env()
@@ -18,10 +18,9 @@ api = Api(app)
 
 # User Endpoints
 
-api.add_resource(user.Register, '/register')
-api.add_resource(user.Login, '/login')
-api.add_resource(user.Protected, '/protected')
-
+#api.add_resource(user.Register, '/register')
+#api.add_resource(user.Login, '/login')
+#api.add_resource(user.Protected, '/protected')
 
 # # Business Endpoints
 # # region
