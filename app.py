@@ -3,7 +3,7 @@ from flask_restful import Api
 from flask_cors import CORS
 from environs import Env
 
-#from src.controllers import user
+from src.controllers import user
 
 env = Env()
 env.read_env()
@@ -18,9 +18,9 @@ api = Api(app)
 
 # User Endpoints
 
-#api.add_resource(user.Register, '/register')
-#api.add_resource(user.Login, '/login')
-#api.add_resource(user.Protected, '/protected')
+api.add_resource(user.Register, '/register')
+api.add_resource(user.Login, '/login')
+api.add_resource(user.Protected, '/protected')
 
 # # Business Endpoints
 # # region
@@ -48,10 +48,12 @@ api = Api(app)
 # api.add_resource(agent.AgentRoutingModal,
 #                  '/agent/<agent_id>/routemap')
 
+
 # endregion
 @app.route("/")
 def hello():
     return "<h1 style='color:blue'>Hello There!</h1>"
+
 
 # Name is only set to main when file is explicitly run (not on imports):
 if __name__ == '__main__':
