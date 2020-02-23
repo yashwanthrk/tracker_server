@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # Filename: start.sh
 
 . .env
@@ -10,7 +10,12 @@ if [[ $(docker ps -a | grep $SERVICE_NAME) != "" ]]; then
 fi
 
 
+# docker run  -it -d -p $FLASK_EXPOSED_PORT:5000 \
+#   -v ${PWD}:/usr/src/app --restart $RESTART \
+#   --log-opt max-size=$LOG_FILE_MAX_SIZE --log-opt max-file=$LOG_FILE_MAX_FILE \
+#   --name $SERVICE_NAME $SERVICE_IMAGE_TAG python3 $FLASK_FILE_NAME
+
 docker run  -it -d -p $FLASK_EXPOSED_PORT:5000 \
   -v ${PWD}:/usr/src/app --restart $RESTART \
   --log-opt max-size=$LOG_FILE_MAX_SIZE --log-opt max-file=$LOG_FILE_MAX_FILE \
-  --name $SERVICE_NAME $SERVICE_IMAGE_TAG python3 $FLASK_FILE_NAME
+  --name $SERVICE_NAME $SERVICE_IMAGE_TAG gunicorn -b 0.0.0.0:5000 -w 9 --worker-class=gthread --worker-connections=1000 app:app --timeout 60
